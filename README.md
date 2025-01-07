@@ -45,7 +45,7 @@ This project explores a dataset containing information about pizza orders, reven
 * Insights by Time: Group orders by time intervals (morning, afternoon, evening) and assess peak periods.
 
 ## Analysis With SQL(MYSQL)
-### CS1 : Extract only the table information
+### CS1 : Extract only the table information.
 ```sql
 DESCRIBE ORDER_DETAILS;
 DESCRIBE ORDERS;
@@ -57,7 +57,7 @@ SELECT * FROM ORDER_DETAILS;
 SELECT * FROM PIZZAS;
 SELECT * FROM PIZZA_TYPES;
 ```
-### CS2 : Total Revenue from All Orders
+### CS2 : Total Revenue from All Orders.
 ```sql
 WITH CTE AS
 (SELECT 
@@ -72,7 +72,7 @@ SELECT
 FROM
     CTE;
 ```
-### CS3 : WHERE QUANTITY IS MORE THAN 1
+### CS3 : Where QUuantity is more than 1.
 ```sql
 WITH CTE AS
 (SELECT 
@@ -89,7 +89,7 @@ FROM
 WHERE
     PRICE <> REVENUE;
 ```
-### CS4 : REVENUE BY PIZZA SIZE
+### CS4 : Revenue by Pizza Size.
 ```sql
 SELECT DISTINCT SIZE FROM PIZZAS;
 SELECT 
@@ -100,7 +100,7 @@ FROM
     ORDER_DETAILS AS O ON P.PIZZA_ID = O.PIZZA_ID
 GROUP BY 1;
 ```
-### CS5 : COUNT ORDERS BY DAY
+### CS5 : Count orders by day.
 ```sql
  SELECT COUNT(DISTINCT DATE) FROM ORDERS;
  
@@ -112,7 +112,7 @@ FROM
     ORDER_DETAILS AS OD ON O.ORDER_ID = OD.ORDER_ID
 GROUP BY DATE;
 ```
- ### CS6: TOP 5 SALES
+ ### CS6: Top 5 Sales.
 ```sql
  	WITH CTE AS (SELECT
         DATE, 
@@ -126,7 +126,7 @@ GROUP BY DATE;
         FROM CTE
         WHERE RN <= 5;
  ```
-### CS7: COUNT OF ORDERS IN DECEMBER
+### CS7: Count orders in DECEMBER.
 ```sql
 SELECT 
     SUM(TOTAL_ORDERS) AS G
@@ -139,7 +139,7 @@ FROM
         STR_TO_DATE(DATE, '%Y-%m-%d') BETWEEN '2015-12-01' AND '2015-12-30'
     GROUP BY 1) X;
 ```
-### CS8 : MONTHLY PIZZA SALES
+### CS8 : Monthly Pizza Sales.
 ```sql
  WITH CT AS (SELECT 
     DATE, COUNT(ORDER_ID) AS SALES
@@ -166,7 +166,7 @@ FROM
 GROUP BY 1
 ORDER BY 2 DESC;
 ```
-### CS9 : ORDER BY TIME OF A DAY (MORNING, AFTERNOON, EVENING)
+### CS9 : Order by time of a Day (MORNING, AFTERNOON, EVENING).
 ```sql
 WITH cte AS
 (SELECT 
@@ -180,7 +180,7 @@ CASE
 FROM cte
 GROUP BY DAY;
 ```
-### CS10: IDENTIFY THE HIGHEST-PRICED PIZZA.
+### CS10: Identify The Highest-Priced Pizza.
 ```sql
 SELECT 
     PT.NAME, P.PRICE
@@ -191,7 +191,7 @@ FROM
 ORDER BY P.PRICE DESC
 LIMIT 1;
 ```
-### CS11: IDENTIFY THE MOST COMMON PIZZA SIZE ORDERED.
+### CS11: Identify the most common pizza size ordered.
 ```sql
 SELECT 
     P.SIZE, COUNT(*) AS PIZZA_ORDERED
@@ -202,7 +202,7 @@ FROM
 GROUP BY SIZE
 ORDER BY 2 DESC;
 ```
-### CS12: LIST THE TOP 5 MOST ORDERED PIZZA TYPES ALONG WITH THEIR QUANTITIES.
+### CS12: List the Top 5 Most Ordered Pizza types along with their quantities.
 ```sql
 SELECT 
     PT.NAME, SUM(QUANTITY) AS ORDERED_QUANTITY
@@ -229,7 +229,7 @@ FROM
 GROUP BY 1
 ORDER BY 2 DESC;
 ```
-### CS14: Determine the distribution of orders by hour of the day
+### CS14: Determine the distribution of orders by hour of the day.
 ```sql
 SELECT 
     HOUR(TIME) AS HOURS, COUNT(ORDER_ID) AS ORDERS
